@@ -1,22 +1,34 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
-
+[System.Serializable]
 public class MisterDialogue : MonoBehaviour
-{   
+{
     int i = 0;
-    public TextMeshProUGUI textComponent;
-    public TextMeshProUGUI guideTextComponent;
-    public string guideText;
-    public string[] lines;
+    [Header("Scene references")]
+    [SerializeField] private TextMeshProUGUI dialogueTextComponent;
+    [SerializeField] private TextMeshProUGUI nameTextComponent;
+    [SerializeField] private TextMeshProUGUI guideTextComponent;
+
+    [Header("General")]
+    public List<Speaker> characters = new();
+
+    [Header("Dialogue")]
+    public Line[] lines;
     private float textSpeed = 0.05f;
+
+    [Header("Extra settings")]
+    public string guideText;
+
+    [Header("Debug (if turned on)")]
     private int index;
     private bool isTyping;
 
     void Start()
     {
-        textComponent.text = string.Empty;
+        dialogueTextComponent.text = string.Empty;
         guideTextComponent.text = string.Empty;
         StartDialogue();
     }
@@ -30,20 +42,36 @@ public class MisterDialogue : MonoBehaviour
 
     void StartDialogue()
     {
-        index = 0;
+        index = -1;
         //StartCoroutine(TypeLine());
     }
 
     System.Collections.IEnumerator TypeLine()
     {
         isTyping = true;
-        textComponent.text = string.Empty;
-
-        foreach (char c in lines[index].ToCharArray())
+        if (lines[index].activeSpeaker != null)
         {
-            textComponent.text += c;
+            nameTextComponent.text = lines[index].activeSpeaker.name;
+            lines[index].activeSpeaker.HighLightMe();
+        }
+        else
+        {
+            nameTextComponent.text = string.Empty;
+        }
+
+        dialogueTextComponent.text = string.Empty;
+
+        foreach (char c in lines[index].text.ToCharArray())
+        {
+            dialogueTextComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+
+        if (lines[index].activeSpeaker != null)
+        {
+            lines[index].activeSpeaker.UnlightMe();
+        }
+
         i++;
         isTyping = false;
 
@@ -55,7 +83,7 @@ public class MisterDialogue : MonoBehaviour
 
         if (isTyping)
         {
-            textComponent.text = lines[index];
+            dialogueTextComponent.text = lines[index].text;
             isTyping = false;
             StopAllCoroutines();
             StartCoroutine(TypeGuideLine());
@@ -68,12 +96,12 @@ public class MisterDialogue : MonoBehaviour
             if (index < lines.Length - 1)
             {
                 index++;
-                textComponent.text = string.Empty;
+                dialogueTextComponent.text = string.Empty;
                 StartCoroutine(TypeLine());
             }
             else
             {
-                textComponent.text = string.Empty;
+                dialogueTextComponent.text = string.Empty;
             }
         }
     }
@@ -88,5 +116,33 @@ public class MisterDialogue : MonoBehaviour
             guideTextComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+    }
+}
+
+[System.Serializable]
+public class Line
+{
+    public string text;
+    public Speaker activeSpeaker;
+    public float textSpeed = 0.05f;
+}
+
+[System.Serializable]
+public class EmoSprite
+{
+    public string spriteName;
+    public Sprite sprite;
+    public Emotion emotion;
+    public enum Emotion
+    {
+        None,
+        Glad,
+        Normal,
+        Confused,
+        Angry,
+        Sad,
+        Dissappointed,
+        Scared,
+        Shocked
     }
 }

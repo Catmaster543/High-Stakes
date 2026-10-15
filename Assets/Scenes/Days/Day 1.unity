@@ -148,14 +148,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d35a926a9fd8db43815c52d6403715c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MisterDialogue
-  textComponent: {fileID: 700713704}
+  dialogueTextComponent: {fileID: 700713704}
+  nameTextComponent: {fileID: 1871270128}
   guideTextComponent: {fileID: 735020044}
-  guideText: Click to continue ->
+  characters:
+  - {fileID: 0}
   lines:
-  - Hi there, this is a test line.
-  - Hi there, this is a test line numbeeeeeeeeeeeeeeeeeeeer 3
-  - Hi there, this is a wait that was numbeeeeeeeeeeeeeeeeer 2, I'm the numbeeeeeeeeeeeeeeeer
-    three here :>
+  - text: Hey Ellur, wassup?
+    activeSpeaker: {fileID: 834138651}
+    textSpeed: 0.05
+  - text: Hey null, glad this goddamn system works!
+    activeSpeaker: {fileID: 1125868194}
+    textSpeed: 0.05
+  - text: Ohh yeah, I'm happy too!
+    activeSpeaker: {fileID: 834138651}
+    textSpeed: 1
+  guideText: Click to continue ->
 --- !u!4 &175785148
 Transform:
   m_ObjectHideFlags: 0
@@ -626,6 +634,100 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &834138650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834138652}
+  - component: {fileID: 834138651}
+  m_Layer: 0
+  m_Name: Character 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &834138651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834138650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e6019e737dc3347b586f0b09a4f0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Speaker
+  name: Null
+  speakersObject: {fileID: 0}
+  emoSprites: []
+--- !u!4 &834138652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834138650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 882.9798, y: 455.52124, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1125868193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125868195}
+  - component: {fileID: 1125868194}
+  m_Layer: 0
+  m_Name: Character 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1125868194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125868193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e6019e737dc3347b586f0b09a4f0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Speaker
+  name: Elur
+  speakersObject: {fileID: 0}
+  emoSprites: []
+--- !u!4 &1125868195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125868193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 882.9798, y: 455.52124, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759338032
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,3 +1043,5 @@ SceneRoots:
   - {fileID: 791736133}
   - {fileID: 517140848}
   - {fileID: 175785148}
+  - {fileID: 834138652}
+  - {fileID: 1125868195}
