@@ -8,9 +8,15 @@ public class MisterDialogue : MonoBehaviour
 {
     int i = 0;
     [Header("Scene references")]
+    [SerializeField] private GameObject dialogBox;
     [SerializeField] private TextMeshProUGUI dialogueTextComponent;
     [SerializeField] private TextMeshProUGUI nameTextComponent;
     [SerializeField] private TextMeshProUGUI guideTextComponent;
+
+    [SerializeField] private GameObject choicesObj;
+
+    [Header("Prefab references")]
+    [SerializeField] private GameObject choiceButtonPrefab;
 
     [Header("General")]
     public List<Speaker> characters = new();
@@ -40,12 +46,14 @@ public class MisterDialogue : MonoBehaviour
         }
     }
 
+    // The auto start method used on the beggining of this scene
     void StartDialogue()
     {
-        index = -1;
+        index = 0;
         //StartCoroutine(TypeLine());
     }
 
+    // The coroutine responsible for typing out text, can be interrupted
     System.Collections.IEnumerator TypeLine()
     {
         isTyping = true;
@@ -77,35 +85,67 @@ public class MisterDialogue : MonoBehaviour
 
         StartCoroutine(TypeGuideLine());
     }
-    public void NextLine()
+
+    // The method responsible for deciding what to do on click
+    public void NextLine(bool isReply = false, Line reply = null)
     {
         guideTextComponent.text = string.Empty;
 
-        if (isTyping)
+        if (!isReply)
         {
-            dialogueTextComponent.text = lines[index].text;
-            isTyping = false;
-            StopAllCoroutines();
-            StartCoroutine(TypeGuideLine());
-            i++;
-        }
-        else
-        {
-            StopCoroutine(TypeGuideLine());
-            guideTextComponent.text = string.Empty;
-            if (index < lines.Length - 1)
+            if (lines[index].type == Line.Type.Line)
             {
-                index++;
-                dialogueTextComponent.text = string.Empty;
-                StartCoroutine(TypeLine());
+                if (isTyping)
+                {
+                    dialogueTextComponent.text = lines[index].text;
+                    isTyping = false;
+                    StopAllCoroutines();
+                    StartCoroutine(TypeGuideLine());
+                    i++;
+                }
+                else
+                {
+                    StopCoroutine(TypeGuideLine());
+                    guideTextComponent.text = string.Empty;
+                    if (index < lines.Length - 1)
+                    {
+                        index++;
+                        dialogueTextComponent.text = string.Empty;
+                        StartCoroutine(TypeLine());
+                    }
+                    else
+                    {
+                        dialogueTextComponent.text = string.Empty;
+                    }
+                }
             }
             else
             {
-                dialogueTextComponent.text = string.Empty;
+                dialogBox.SetActive(false);
+
+                int yPos = 540;
+                foreach (Choice choice in lines[index].choices)
+                {
+                    Vector3 resultPos = new Vector3(960, yPos);
+                    GameObject instButton = Instantiate(choiceButtonPrefab, resultPos, Quaternion.identity);
+
+                    instButton.GetComponent<Button>().transform.SetParent(choicesObj.transform, false);
+                    instButton.transform.position = resultPos;
+                    instButton.GetComponent<Button>().onClick.AddListener( () => ChoiceSelected(choice));
+                    instButton.GetComponentInChildren<TextMeshProUGUI>().text = choice.name;
+
+                    yPos -= 50;
+                }
             }
+        }
+        else
+        {
+            dialogBox.SetActive(true);
+
         }
     }
 
+    // The coroutine responsible for typing out the guide text after a while, but really is just half-working, no idea why the hell it does not still work
     System.Collections.IEnumerator TypeGuideLine()
     {
         guideTextComponent.text = string.Empty;
@@ -117,14 +157,32 @@ public class MisterDialogue : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
     }
+
+    public void ChoiceSelected(Choice choice)
+    {
+        NextLine(true, choice.reply);
+    }
 }
 
 [System.Serializable]
 public class Line
 {
+    [Header("General settings")]
+    public Type type;
+
+    [Header("Line type settings")]
     public string text;
     public Speaker activeSpeaker;
     public float textSpeed = 0.05f;
+
+    [Header("Choice type settings")]
+    public List<Choice> choices = new();
+
+    public enum Type
+    {
+        Line,
+        Choices
+    }
 }
 
 [System.Serializable]
@@ -145,4 +203,12 @@ public class EmoSprite
         Scared,
         Shocked
     }
+}
+
+[System.Serializable]
+public class Choice
+{
+    public string name;
+    public Line reply;
+    public bool isBad;
 }
