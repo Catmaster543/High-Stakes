@@ -1,4 +1,7 @@
+<img width="960" height="100" alt="Joanne" src="https://github.com/user-attachments/assets/ed33be61-8cfa-4ced-a967-7cd9315b6f6b" />
+
 # ִ ࣪𖤐High Stakes
+
 
 ### ִ ࣪𖤐Main premise:
 ✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏
@@ -6,6 +9,8 @@
 You play as a witch, that can time travel to the time she last woke up. On your way back from visiting distant family, your carriage gets damaged and you have to spend a week (maybe less, i'll see how long the game will take to make) in the village before you can continue.
 
 The village has expirienced quite a bit of misfortune lately, and they think it's a work of a witch. A slight problem for you? Well, you ARE a witch, and you CAN read and write. So good luck with convincing the townsfolk and blending in enough to not be suspected of witchcraft, and burned on a very large stake thats being built in the middle of the town.
+
+<img width="100" height="100" alt="obrazek" src="https://github.com/user-attachments/assets/1ebfbfb8-df29-4e30-ac13-7358f9829353" />
 
 ### ִ ࣪𖤐Trying this out
 ✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏
@@ -23,7 +28,7 @@ The dialog box will tell you which of the characters happens to be currently tal
 #### ⋆˚࿔Choices
 At times, some decisions from you will be needed. But since our witch doesn't want to be burned on the very high stake, you better choose wisely. Some choices can, infact, lead to your identity being leaked and that would put you in a... not so great situation.
 #### ⋆˚࿔Day rewind mechanic
-If you happened to accidentally leak your true identity, you can **"rewind" to the last time you woke up**, aka. the morning, or better said the beggining of the day here. This is already working, even in this demo.
+If you happened to accidentally leak your true identity, you can "rewind" to the last time you woke up, aka. the morning, or better said the beggining of the day here. This is already working, even in this demo.
 
 ### ִ ࣪𖤐Download or Web version?:
 ✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏
@@ -50,3 +55,10 @@ IDK about Windows 10?
 ✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏
 
 No generative Ai was used in this project. Not for the Art, not for the story, not for the planning, not for the code, NOTHING. And we're proud of it :]
+
+
+
+<!-- Doesn't work, but ima keep it here :3 -->
+<img src="(https://github.com/user-attachments/assets/3d0ce8c0-b50d-4572-9db2-9c20cf774a9e"
+style="max-height: 300px; position: fixed; right: 10px; bottom: 10px; z-index: 100;"
+title="art by FishyDrawer">
