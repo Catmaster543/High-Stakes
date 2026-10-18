@@ -31,6 +31,7 @@ public class MisterDialogue : MonoBehaviour
     [Header("Debug (if turned on)")]
     private int index;
     private bool isTyping;
+    public bool choicesOn;
 
     void Start()
     {
@@ -40,9 +41,12 @@ public class MisterDialogue : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (!choicesOn)
         {
-            NextLine();
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                NextLine();
+            }
         }
     }
 
@@ -122,16 +126,19 @@ public class MisterDialogue : MonoBehaviour
             else
             {
                 dialogBox.SetActive(false);
+                choicesOn = true;
 
                 int yPos = 540;
                 foreach (Choice choice in lines[index].choices)
                 {
                     Vector3 resultPos = new Vector3(960, yPos);
                     GameObject instButton = Instantiate(choiceButtonPrefab, resultPos, Quaternion.identity);
-
+                    Debug.Log(instButton);
                     instButton.GetComponent<Button>().transform.SetParent(choicesObj.transform, false);
+                    Debug.Log(instButton.GetComponent<Button>());
                     instButton.transform.position = resultPos;
-                    instButton.GetComponent<Button>().onClick.AddListener( () => ChoiceSelected(choice));
+                    instButton.GetComponent<Button>().onClick.AddListener( () => { ChoiceSelected(choice); });
+                    instButton.GetComponent<Button>().onClick.AddListener(() => { Test(instButton.gameObject); });
                     instButton.GetComponentInChildren<TextMeshProUGUI>().text = choice.name;
 
                     yPos -= 50;
@@ -158,9 +165,15 @@ public class MisterDialogue : MonoBehaviour
         }
     }
 
-    public void ChoiceSelected(Choice choice)
+    public void ChoiceSelected(Choice choice = null)
     {
+        Debug.Log("You clicked me.");
         NextLine(true, choice.reply);
+    }
+
+    public void Test(GameObject gameObject = null)
+    {
+        Debug.Log(gameObject.name);
     }
 }
 
