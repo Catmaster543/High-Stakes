@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting.Dependencies.Sqlite;
 
 [System.Serializable]
 public class MisterDialogue : MonoBehaviour
@@ -14,8 +15,8 @@ public class MisterDialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueTextComponent;
     [SerializeField] private TextMeshProUGUI nameTextComponent;
     [SerializeField] private TextMeshProUGUI guideTextComponent;
-    [SerializeField] private Sprite bg;
-    [SerializeField] private Sprite fg;
+    [SerializeField] private Image bg;
+    [SerializeField] private Image fg;
 
     [SerializeField] private GameObject choicesObj;
 
@@ -37,9 +38,9 @@ public class MisterDialogue : MonoBehaviour
     [Header("Debug (if turned on)")]
     private int index;
     private bool isTyping;
-    public bool choicesOn;
-    public bool badEnd = false;
-    public int badInt = 0;
+    private bool choicesOn;
+    private bool badEnd = false;
+    private int badInt = 0;
 
     void Start()
     {
@@ -180,11 +181,11 @@ public class MisterDialogue : MonoBehaviour
             {
                 if (lines[index + 1].newBg != null)
                 {
-                    bg = lines[index + 1].newBg;
+                    bg.sprite = lines[index + 1].newBg;
                 }
                 if (lines[index + 1].newFg != null)
                 {
-                    fg = lines[index + 1].newFg;
+                    fg.sprite = lines[index + 1].newFg;
                 }
 
                 foreach (GameObject obj in lines[index + 1].charactersToSpawn)
