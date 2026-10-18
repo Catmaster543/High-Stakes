@@ -43,6 +43,22 @@ public class MisterDialogue : MonoBehaviour
     {
         dialogueTextComponent.text = string.Empty;
         guideTextComponent.text = string.Empty;
+
+        List<GameObject> charsToHide = new List<GameObject>();
+
+        foreach (Line line in lines)
+        {
+            foreach (GameObject obj in line.charactersToSpawn)
+            {
+                charsToHide.Add(obj);
+            }
+        }
+
+        foreach (GameObject obj in charsToHide)
+        {
+            obj.SetActive(false);
+        }
+
         StartDialogue();
     }
     void Update()
@@ -158,7 +174,19 @@ public class MisterDialogue : MonoBehaviour
                     lines[index].activeSpeaker.UnlightMe();
                 }
             }
+            if (lines.Length != index + 1)
+            {
+                foreach (GameObject obj in lines[index + 1].charactersToSpawn)
+                {
+                    obj.SetActive(true);
+                }
 
+                foreach (GameObject obj in lines[index + 1].charactersToDespawn)
+                {
+                    obj.SetActive(false);
+                }
+            }
+            
             StopAllCoroutines();
 
             if (lines[index].type == Line.Type.Line)
@@ -265,6 +293,8 @@ public class Line
 {
     [Header("General settings")]
     public Type type;
+    public List<GameObject> charactersToSpawn = new();
+    public List<GameObject> charactersToDespawn = new();
 
     [Header("Line type settings")]
     public string text;

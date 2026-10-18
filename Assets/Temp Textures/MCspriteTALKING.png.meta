@@ -103,28 +103,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MCspriteTALKING_0
-      rect:
-        serializedVersion: 2
-        x: 2500
-        y: 1061
-        width: 15
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dffd183e9798076c0800000000000000
-      internalID: -4147664100207239171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: MCspriteTALKING_1
       rect:
         serializedVersion: 2
@@ -133,7 +111,7 @@ TextureImporter:
         width: 1197
         height: 1923
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5bd8b244f3eae6b418d1888ae355d0a7
     internalID: 0
     vertices: []
     indices: 

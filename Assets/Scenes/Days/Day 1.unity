@@ -157,16 +157,22 @@ MonoBehaviour:
   day: 1
   lines:
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: Hey Ellur, wassup?
     activeSpeaker: {fileID: 834138651}
     textSpeed: 0.05
     choices: []
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: Hey null, glad this goddamn system works!
     activeSpeaker: {fileID: 1125868194}
     textSpeed: 0.05
     choices: []
   - type: 1
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: Ohh yeah, I'm happy too!
     activeSpeaker: {fileID: 834138651}
     textSpeed: 1
@@ -174,6 +180,8 @@ MonoBehaviour:
     - name: Yup yup, makes me real happy too!
       reply:
         type: 0
+        charactersToSpawn: []
+        charactersToDespawn: []
         text: Are you fckng sure?
         activeSpeaker: {fileID: 834138651}
         textSpeed: 0.05
@@ -182,6 +190,8 @@ MonoBehaviour:
     - name: What do you mean?
       reply:
         type: 0
+        charactersToSpawn: []
+        charactersToDespawn: []
         text: OH MY GOD!
         activeSpeaker: {fileID: 1125868194}
         textSpeed: 0.05
@@ -190,42 +200,59 @@ MonoBehaviour:
     - name: Right.
       reply:
         type: 0
+        charactersToSpawn: []
+        charactersToDespawn: []
         text: That's it?
         activeSpeaker: {fileID: 1125868194}
         textSpeed: 0.05
         choices: []
       isBad: 0
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: Well whatever Null, whatever..
     activeSpeaker: {fileID: 1125868194}
     textSpeed: 1
     choices: []
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: It is whatever.
     activeSpeaker: {fileID: 834138651}
     textSpeed: 1
     choices: []
   - type: 0
+    charactersToSpawn:
+    - {fileID: 1813746529}
+    charactersToDespawn: []
     text: Hallo
     activeSpeaker: {fileID: 1813746531}
     textSpeed: 1
     choices: []
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: AHHHHHH
     activeSpeaker: {fileID: 834138651}
     textSpeed: 1
     choices: []
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: WHO THE HELL IS THIS??
     activeSpeaker: {fileID: 1125868194}
     textSpeed: 1
     choices: []
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: Excuse me?
     activeSpeaker: {fileID: 1813746531}
     textSpeed: 1
     choices: []
   - type: 0
+    charactersToSpawn: []
+    charactersToDespawn: []
     text: I am the spooky scary witch that'll burn you both to ashes
     activeSpeaker: {fileID: 1813746531}
     textSpeed: 1
