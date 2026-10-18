@@ -336,28 +336,32 @@ MonoBehaviour:
   day: 1
   lines:
   - type: 0
-    charactersToSpawn: []
+    charactersToSpawn:
+    - {fileID: 1813746529}
     charactersToDespawn: []
-    text: Hey Ellur, wassup?
-    activeSpeaker: {fileID: 834138651}
+    text: I have to write a letter to father,
+    activeSpeaker: {fileID: 1813746531}
+    textSpeed: 0.05
+    newBg: {fileID: 0}
+    newFg: {fileID: 0}
+    choices: []
+  - type: 0
+    charactersToSpawn:
+    - {fileID: 1813746529}
+    charactersToDespawn: []
+    text: I have to write a letter to father, can't have him thinking I died along
+      the way...
+    activeSpeaker: {fileID: 1813746531}
     textSpeed: 0.05
     newBg: {fileID: 0}
     newFg: {fileID: 0}
     choices: []
   - type: 0
     charactersToSpawn: []
-    charactersToDespawn: []
-    text: Hey null, glad this goddamn system works!
-    activeSpeaker: {fileID: 1125868194}
-    textSpeed: 0.05
-    newBg: {fileID: 0}
-    newFg: {fileID: 0}
-    choices: []
-  - type: 1
-    charactersToSpawn: []
-    charactersToDespawn: []
-    text: Ohh yeah, I'm happy too!
-    activeSpeaker: {fileID: 834138651}
+    charactersToDespawn:
+    - {fileID: 1813746529}
+    text: Hmm, yes, this should do
+    activeSpeaker: {fileID: 1813746531}
     textSpeed: 1
     newBg: {fileID: 0}
     newFg: {fileID: 0}
@@ -399,28 +403,29 @@ MonoBehaviour:
         choices: []
       isBad: 0
   - type: 0
-    charactersToSpawn: []
+    charactersToSpawn:
+    - {fileID: 1813746529}
     charactersToDespawn: []
-    text: Well whatever Null, whatever..
-    activeSpeaker: {fileID: 1125868194}
+    text: Ehm, hello? Is this the post office?
+    activeSpeaker: {fileID: 1813746531}
     textSpeed: 1
     newBg: {fileID: 0}
     newFg: {fileID: 0}
     choices: []
   - type: 0
-    charactersToSpawn: []
+    charactersToSpawn:
+    - {fileID: 1994300082}
     charactersToDespawn: []
-    text: It is whatever.
-    activeSpeaker: {fileID: 834138651}
+    text: Yes. Need anything?
+    activeSpeaker: {fileID: 0}
     textSpeed: 1
     newBg: {fileID: -3969066201826224578, guid: 3ce7e884e79d5634aaf5768a89357493, type: 3}
     newFg: {fileID: 0}
     choices: []
   - type: 0
-    charactersToSpawn:
-    - {fileID: 1813746529}
+    charactersToSpawn: []
     charactersToDespawn: []
-    text: Hallo
+    text: Ah yes, I have a letter I need to send
     activeSpeaker: {fileID: 1813746531}
     textSpeed: 1
     newBg: {fileID: -8841400272828804613, guid: 812f5e3a8e552f641a221f15c04f0e77, type: 3}
@@ -429,26 +434,62 @@ MonoBehaviour:
   - type: 0
     charactersToSpawn: []
     charactersToDespawn: []
-    text: AHHHHHH
-    activeSpeaker: {fileID: 834138651}
+    text: You... Wrote a letter?
+    activeSpeaker: {fileID: 1994300083}
     textSpeed: 1
     newBg: {fileID: 0}
     newFg: {fileID: 0}
     choices: []
-  - type: 0
+  - type: 1
     charactersToSpawn: []
     charactersToDespawn: []
-    text: WHO THE HELL IS THIS??
-    activeSpeaker: {fileID: 1125868194}
+    text: 
+    activeSpeaker: {fileID: 0}
     textSpeed: 1
     newBg: {fileID: 0}
     newFg: {fileID: 0}
-    choices: []
+    choices:
+    - name: Yea, something wrong with that?
+      reply:
+        type: 0
+        charactersToSpawn: []
+        charactersToDespawn: []
+        text: 
+        activeSpeaker: {fileID: 0}
+        textSpeed: 0
+        newBg: {fileID: 0}
+        newFg: {fileID: 0}
+        choices: []
+      isBad: 1
+    - name: No, no. I was just supposed to hold on to it and send it later
+      reply:
+        type: 0
+        charactersToSpawn: []
+        charactersToDespawn: []
+        text: 
+        activeSpeaker: {fileID: 0}
+        textSpeed: 0
+        newBg: {fileID: 0}
+        newFg: {fileID: 0}
+        choices: []
+      isBad: 0
+    - name: Write? Me? Nooo, am just a simple lady.
+      reply:
+        type: 0
+        charactersToSpawn: []
+        charactersToDespawn: []
+        text: 
+        activeSpeaker: {fileID: 0}
+        textSpeed: 0
+        newBg: {fileID: 0}
+        newFg: {fileID: 0}
+        choices: []
+      isBad: 0
   - type: 0
     charactersToSpawn: []
     charactersToDespawn: []
     text: Excuse me?
-    activeSpeaker: {fileID: 1813746531}
+    activeSpeaker: {fileID: 1994300083}
     textSpeed: 1
     newBg: {fileID: 0}
     newFg: {fileID: 0}
@@ -464,9 +505,6 @@ MonoBehaviour:
     choices: []
   guideText: Click to continue ->
   rewindText: OH NO! I need to rewind back to the start of the day..
-  choicesOn: 0
-  badEnd: 0
-  badInt: 0
 --- !u!4 &175785148
 Transform:
   m_ObjectHideFlags: 0
@@ -1375,6 +1413,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1813746530}
+  - {fileID: 1994300086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1952,6 +1991,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905023621}
   m_CullTransparentMesh: 1
+--- !u!1 &1994300082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1994300086}
+  - component: {fileID: 1994300085}
+  - component: {fileID: 1994300084}
+  - component: {fileID: 1994300083}
+  m_Layer: 5
+  m_Name: Penny
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1994300083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994300082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e6019e737dc3347b586f0b09a4f0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Speaker
+  name: Penny
+  speakersObject: {fileID: 0}
+  quietSprite: {fileID: -8841400272828804613, guid: 812f5e3a8e552f641a221f15c04f0e77, type: 3}
+  talkSprite: {fileID: -5382576371622654770, guid: d938dd353a63e5c419671795c76f6914, type: 3}
+  emoSprites: []
+--- !u!114 &1994300084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994300082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -8841400272828804613, guid: 812f5e3a8e552f641a221f15c04f0e77, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1994300085
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994300082}
+  m_CullTransparentMesh: 1
+--- !u!224 &1994300086
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994300082}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1052443005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -668, y: -86.34}
+  m_SizeDelta: {x: 451.9806, y: 907.3195}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

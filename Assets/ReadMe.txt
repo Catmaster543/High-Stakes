@@ -1,6 +1,7 @@
 # Note
 To anyone else finding this - this ain't no AI written stuff, it's me writing this to my fellow.. co-worker could one say?
 It's mainly to make their (and possibly mine too if I ever forget) life easier.
+ - Coworker here who read it, thank you :]
 
 # System - not needed for now.
 Each day is its own scene, binded on the days "The manager" nextscene binding.
