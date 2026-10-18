@@ -43,8 +43,10 @@ public class MisterDialogue : MonoBehaviour
     {
         if (!choicesOn)
         {
+            
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
+                Debug.Log("Click detected");
                 NextLine();
             }
         }
@@ -58,36 +60,68 @@ public class MisterDialogue : MonoBehaviour
     }
 
     // The coroutine responsible for typing out text, can be interrupted
-    System.Collections.IEnumerator TypeLine()
+    System.Collections.IEnumerator TypeLine(Line line = null)
     {
         isTyping = true;
-        if (lines[index].activeSpeaker != null)
+        if (line == null)
         {
-            nameTextComponent.text = lines[index].activeSpeaker.name;
-            lines[index].activeSpeaker.HighLightMe();
+            if (lines[index].activeSpeaker != null)
+            {
+                nameTextComponent.text = lines[index].activeSpeaker.name;
+                lines[index].activeSpeaker.HighLightMe();
+            }
+            else
+            {
+                nameTextComponent.text = string.Empty;
+            }
+
+            dialogueTextComponent.text = string.Empty;
+
+            foreach (char c in lines[index].text.ToCharArray())
+            {
+                dialogueTextComponent.text += c;
+                yield return new WaitForSeconds(textSpeed);
+            }
+
+            if (lines[index].activeSpeaker != null)
+            {
+                lines[index].activeSpeaker.UnlightMe();
+            }
+
+            i++;
+            isTyping = false;
+
+            StartCoroutine(TypeGuideLine());
         }
         else
         {
-            nameTextComponent.text = string.Empty;
+            if (line.activeSpeaker != null)
+            {
+                nameTextComponent.text = line.activeSpeaker.name;
+                line.activeSpeaker.HighLightMe();
+            }
+            else
+            {
+                nameTextComponent.text = string.Empty;
+            }
+
+            dialogueTextComponent.text = string.Empty;
+
+            foreach (char c in line.text.ToCharArray())
+            {
+                dialogueTextComponent.text += c;
+                yield return new WaitForSeconds(textSpeed);
+            }
+
+            if (line.activeSpeaker != null)
+            {
+                line.activeSpeaker.UnlightMe();
+            }
+
+            isTyping = false;
+
+            StartCoroutine(TypeGuideLine());
         }
-
-        dialogueTextComponent.text = string.Empty;
-
-        foreach (char c in lines[index].text.ToCharArray())
-        {
-            dialogueTextComponent.text += c;
-            yield return new WaitForSeconds(textSpeed);
-        }
-
-        if (lines[index].activeSpeaker != null)
-        {
-            lines[index].activeSpeaker.UnlightMe();
-        }
-
-        i++;
-        isTyping = false;
-
-        StartCoroutine(TypeGuideLine());
     }
 
     // The method responsible for deciding what to do on click
@@ -97,6 +131,7 @@ public class MisterDialogue : MonoBehaviour
 
         if (!isReply)
         {
+            Debug.Log($"Not a reply, the text is:{lines[index].text}");
             if (lines[index].type == Line.Type.Line)
             {
                 if (isTyping)
@@ -128,26 +163,29 @@ public class MisterDialogue : MonoBehaviour
                 dialogBox.SetActive(false);
                 choicesOn = true;
 
-                int yPos = 540;
                 foreach (Choice choice in lines[index].choices)
                 {
-                    Vector3 resultPos = new Vector3(960, yPos);
-                    GameObject instButton = Instantiate(choiceButtonPrefab, resultPos, Quaternion.identity);
-                    Debug.Log(instButton);
+                    GameObject instButton = Instantiate(choiceButtonPrefab);
                     instButton.GetComponent<Button>().transform.SetParent(choicesObj.transform, false);
-                    Debug.Log(instButton.GetComponent<Button>());
-                    instButton.transform.position = resultPos;
                     instButton.GetComponent<Button>().onClick.AddListener( () => { ChoiceSelected(choice); });
-                    instButton.GetComponent<Button>().onClick.AddListener(() => { Test(instButton.gameObject); });
                     instButton.GetComponentInChildren<TextMeshProUGUI>().text = choice.name;
-
-                    yPos -= 50;
                 }
             }
         }
         else
         {
             dialogBox.SetActive(true);
+            foreach (Transform child in choicesObj.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            choicesObj.SetActive(false);
+            
+            StopCoroutine(TypeGuideLine());
+            guideTextComponent.text = string.Empty;
+            dialogueTextComponent.text = string.Empty;
+            StartCoroutine(TypeLine(reply));
+            choicesOn = false;
 
         }
     }
