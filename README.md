@@ -51,7 +51,7 @@ For now just English. Czech translation MIGHT be added later.
 Windows 11
 IDK about Windows 10?
 
-### ִ ࣪𖤐AI Usage decleration:
+### ִ ࣪𖤐AI Usage declaration:
 ✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏
 
 No generative Ai was used in this project. Not for the Art, not for the story, not for the planning, not for the code, NOTHING. And we're proud of it :]
@@ -62,3 +62,11 @@ No generative Ai was used in this project. Not for the Art, not for the story, n
 <img src="(https://github.com/user-attachments/assets/3d0ce8c0-b50d-4572-9db2-9c20cf774a9e"
 style="max-height: 300px; position: fixed; right: 10px; bottom: 10px; z-index: 100;"
 title="art by FishyDrawer">
+
+### ִ ࣪𖤐Brought to you by:
+
+<img width="420" height="533" alt="Untitled_Artwork" src="https://github.com/user-attachments/assets/c15ceea2-89ae-4644-9b6f-2c56f388fa24" /><img width="297" height="533" alt="Aaa" src="https://github.com/user-attachments/assets/9c702e99-bbf0-44a2-8a0d-ff84a848192d" />
+
+### ִ----------------- Fiskerz [Catmaster543] --------------- FishyDrawer [Fliculka] -----------------
+
+
