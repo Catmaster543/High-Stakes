@@ -154,8 +154,7 @@ MonoBehaviour:
   guideTextComponent: {fileID: 735020044}
   choicesObj: {fileID: 979160578}
   choiceButtonPrefab: {fileID: 3913234934087479894, guid: 52fdbcc6d4943914ab379c5172ea6ead, type: 3}
-  characters:
-  - {fileID: 0}
+  day: 2
   lines:
   - type: 0
     text: Hey Ellur, wassup?
@@ -207,7 +206,10 @@ MonoBehaviour:
     textSpeed: 1
     choices: []
   guideText: Click to continue ->
+  rewindText: 
   choicesOn: 0
+  badEnd: 0
+  badInt: 0
 --- !u!4 &175785148
 Transform:
   m_ObjectHideFlags: 0

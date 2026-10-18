@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class MisterDialogue : MonoBehaviour
@@ -19,7 +21,8 @@ public class MisterDialogue : MonoBehaviour
     [SerializeField] private GameObject choiceButtonPrefab;
 
     [Header("General")]
-    public List<Speaker> characters = new();
+    //public List<Speaker> characters = new();
+    [SerializeField] int day;
 
     [Header("Dialogue")]
     public Line[] lines;
@@ -27,11 +30,14 @@ public class MisterDialogue : MonoBehaviour
 
     [Header("Extra settings")]
     public string guideText;
+    public string rewindText;
 
     [Header("Debug (if turned on)")]
     private int index;
     private bool isTyping;
     public bool choicesOn;
+    public bool badEnd = false;
+    public int badInt = 0;
 
     void Start()
     {
@@ -41,13 +47,30 @@ public class MisterDialogue : MonoBehaviour
     }
     void Update()
     {
-        if (!choicesOn)
+        if (!choicesOn && !badEnd)
         {
-            
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 Debug.Log("Click detected");
                 NextLine();
+            }
+        }
+        else if (badEnd)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                badInt++;
+                Debug.Log("Bad Click detected");
+                if (badInt == 1)
+                {
+                    Line line = new Line();
+                    line.text = rewindText;
+                    StartCoroutine(TypeLine(line));
+                }
+                if (badInt == 2)
+                {
+                    StartCoroutine(RewindDay());
+                }
             }
         }
     }
@@ -60,7 +83,7 @@ public class MisterDialogue : MonoBehaviour
     }
 
     // The coroutine responsible for typing out text, can be interrupted
-    System.Collections.IEnumerator TypeLine(Line line = null)
+    IEnumerator TypeLine(Line line = null)
     {
         isTyping = true;
         if (line == null)
@@ -125,7 +148,7 @@ public class MisterDialogue : MonoBehaviour
     }
 
     // The method responsible for deciding what to do on click
-    public void NextLine(bool isReply = false, Line reply = null)
+    public void NextLine(bool isReply = false, Line reply = null, bool badChoice = false)
     {
         guideTextComponent.text = string.Empty;
 
@@ -181,17 +204,20 @@ public class MisterDialogue : MonoBehaviour
             }
             choicesObj.SetActive(false);
             
-            StopCoroutine(TypeGuideLine());
+            StopAllCoroutines();
             guideTextComponent.text = string.Empty;
             dialogueTextComponent.text = string.Empty;
+            if (badChoice)
+            {
+                badEnd = true;
+            }
             StartCoroutine(TypeLine(reply));
             choicesOn = false;
-
         }
     }
 
     // The coroutine responsible for typing out the guide text after a while, but really is just half-working, no idea why the hell it does not still work
-    System.Collections.IEnumerator TypeGuideLine()
+    IEnumerator TypeGuideLine()
     {
         guideTextComponent.text = string.Empty;
         yield return new WaitForSeconds(2);
@@ -203,10 +229,22 @@ public class MisterDialogue : MonoBehaviour
         }
     }
 
+    IEnumerator RewindDay()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene($"Day {day}");
+    }
+
     public void ChoiceSelected(Choice choice = null)
     {
-        Debug.Log("You clicked me.");
-        NextLine(true, choice.reply);
+        if (choice.isBad)
+        {
+            NextLine(true, choice.reply, true);
+        }
+        else
+        {
+            NextLine(true, choice.reply);
+        }
     }
 
     public void Test(GameObject gameObject = null)
