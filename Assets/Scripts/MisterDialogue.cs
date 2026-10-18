@@ -106,11 +106,6 @@ public class MisterDialogue : MonoBehaviour
                 yield return new WaitForSeconds(textSpeed);
             }
 
-            if (lines[index].activeSpeaker != null)
-            {
-                lines[index].activeSpeaker.UnlightMe();
-            }
-
             i++;
             isTyping = false;
 
@@ -155,13 +150,24 @@ public class MisterDialogue : MonoBehaviour
         if (!isReply)
         {
             Debug.Log($"Not a reply, the text is:{lines[index].text}");
+
+            if (index >= 1)
+            {
+                if (lines[index].activeSpeaker != null)
+                {
+                    lines[index].activeSpeaker.UnlightMe();
+                }
+            }
+
+            StopAllCoroutines();
+
             if (lines[index].type == Line.Type.Line)
             {
                 if (isTyping)
                 {
                     dialogueTextComponent.text = lines[index].text;
                     isTyping = false;
-                    StopAllCoroutines();
+                    
                     StartCoroutine(TypeGuideLine());
                     i++;
                 }
@@ -204,7 +210,7 @@ public class MisterDialogue : MonoBehaviour
             }
             choicesObj.SetActive(false);
             
-            StopAllCoroutines();
+            //StopAllCoroutines();
             guideTextComponent.text = string.Empty;
             dialogueTextComponent.text = string.Empty;
             if (badChoice)
@@ -213,6 +219,7 @@ public class MisterDialogue : MonoBehaviour
             }
             StartCoroutine(TypeLine(reply));
             choicesOn = false;
+            index++;
         }
     }
 
