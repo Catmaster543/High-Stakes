@@ -14,6 +14,8 @@ public class MisterDialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueTextComponent;
     [SerializeField] private TextMeshProUGUI nameTextComponent;
     [SerializeField] private TextMeshProUGUI guideTextComponent;
+    [SerializeField] private Sprite bg;
+    [SerializeField] private Sprite fg;
 
     [SerializeField] private GameObject choicesObj;
 
@@ -176,6 +178,15 @@ public class MisterDialogue : MonoBehaviour
             }
             if (lines.Length != index + 1)
             {
+                if (lines[index + 1].newBg != null)
+                {
+                    bg = lines[index + 1].newBg;
+                }
+                if (lines[index + 1].newFg != null)
+                {
+                    fg = lines[index + 1].newFg;
+                }
+
                 foreach (GameObject obj in lines[index + 1].charactersToSpawn)
                 {
                     obj.SetActive(true);
@@ -211,7 +222,7 @@ public class MisterDialogue : MonoBehaviour
                     }
                     else
                     {
-                        dialogueTextComponent.text = string.Empty;
+                        //dialogueTextComponent.text = string.Empty;
                     }
                 }
             }
@@ -300,6 +311,10 @@ public class Line
     public string text;
     public Speaker activeSpeaker;
     public float textSpeed = 0.05f;
+
+    [Header("Scene settings")]
+    public Sprite newBg;
+    public Sprite newFg;
 
     [Header("Choice type settings")]
     public List<Choice> choices = new();
